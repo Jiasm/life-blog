@@ -1,9 +1,10 @@
 const fs = require('fs')
+const path = require('path')
 const sizeOf = require('image-size')
-const path = 'images'
-const output = '../themes/next/source/photos/photoslist.json'
+const rootPath = 'images'
+const output = path.reolsve(__dirname, '../../themes/next/source/photos/photoslist.json')
 var dimensions
-fs.readdir(path, function (err, files) {
+fs.readdir(rootPath, function (err, files) {
   if (err) {
     return
   }
@@ -13,12 +14,12 @@ fs.readdir(path, function (err, files) {
       fs.writeFile(output, JSON.stringify(arr, null, '\t'))
       return
     }
-    fs.stat(path + '/' + files[index], function (err, stats) {
+    fs.stat(rootPath + '/' + files[index], function (err, stats) {
       if (err) {
         return
       }
       if (stats.isFile()) {
-        dimensions = sizeOf(path + '/' + files[index])
+        dimensions = sizeOf(rootPath + '/' + files[index])
         console.log(dimensions.width, dimensions.height)
         arr.push(dimensions.width + '.' + dimensions.height + ' ' + files[index])
       }
