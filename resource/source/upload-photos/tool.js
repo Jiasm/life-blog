@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const sizeOf = require('image-size')
 const rootPath = 'images'
-const output = path.reolsve(__dirname, '../../themes/next/source/photos/photoslist.json')
+const output = path.resolve(__dirname, '../../themes/next/source/photos/photoslist.json')
 var dimensions
 fs.readdir(rootPath, function (err, files) {
   if (err) {
